@@ -1,8 +1,10 @@
 body {
     padding: 70px 0;
+    /*background-color: red;*/
 }
 
 .page-footer {
     position: fixed;
     bottom: 0;
+    text-align: center;
 }
