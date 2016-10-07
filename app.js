@@ -1,35 +1,32 @@
 'use strict';
 
-function MainController ($scope) {
-    // const ctrl = this;
+function MainController (orderByFilter, $timeout) {
+    const ctrl = this;
+
+    var savedTasks = [ ];
  
-    $scope.savedTasks = [
-            {
-                info : "I'd like to make a new post.",
-            },    
-            {
-                info : "I'd like the post to appear below this one.",
-            },                
-        ];
+    ctrl.order = 'date';
+    ctrl.reverse = false;
+    ctrl.savedTasks = savedTasks;
+    ctrl.showTaskSaved = false; // visibility for save verification message
 
-
-    // ctrl.showTaskSaved = false; // visibility for save verification message
-
+    ctrl.sortBy = function(order) {
+        ctrl.reverse = (ctrl.order === order) ? !ctrl.reverse : false;
+        ctrl.order = order;
+        ctrl.savedTasks = orderByFilter(ctrl.savedTasks, ctrl.order, ctrl.reverse);
+    };
 
     // save user input for new todo task
-     $scope.addSavedTask = function() {
-        $scope.savedTasks.push($scope.newTask);
-        $scope.newTask = {};
+     ctrl.addSavedTask = function() {
+        ctrl.savedTasks.push(ctrl.newTask);
+        ctrl.newTask = {};
 
-        // ctrl.showTaskSaved = true; // visibility for save verification message
+        ctrl.showTaskSaved = true; // visibility for save verification message
 
-        // $timeout(function() {
-        //     ctrl.showTaskSaved = false; // visibility for save verification message
-        // }, 2000);
-    }
-
-
-
+        $timeout(function() {
+            ctrl.showTaskSaved = false; // visibility for save verification message
+        }, 2000);
+    };
 
 
 
