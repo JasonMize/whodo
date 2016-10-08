@@ -30,12 +30,6 @@
         </nav>
     </header>
 
-    <!-- success message -->
-<!--     <div class='input-saved-alert container' ng-show='mac.showTaskSaved'>
-        <div class='alert alert-success'>
-            Task Saved!
-        </div>
-    </div> -->
 
     
     <div class='container'>
@@ -48,13 +42,19 @@
                             <button class='btn btn-primary' ng-click='mac.sortBy("info")'>
                                 Task
                             </button>
-                            <span class="sortorder" ng-show='mac.order === "info" ' ng-class="{reverse:reverse}"></span>
+                            <span class="sortorder" ng-show='mac.order === "info" '></span>
                         </th>
                         <th>
                             <button class= 'btn btn-primary' ng-click='mac.sortBy("date")'>
+                                Date Due
+                            </button>    
+                            <span class="sortorder" ng-show='mac.order === "date" '></span>
+                        </th>
+                        <th>
+                            <button class= 'btn btn-primary' ng-click='mac.sortBy("date-added")'>
                                 Date Added
                             </button>    
-                            <span class="sortorder" ng-show='mac.order === "date" ' ng-class="{reverse:reverse}"></span>
+                            <span class="sortorder" ng-show='mac.order === "date-added" '></span>
                         </th>
                     </thead>
                     <tbody>
@@ -62,10 +62,13 @@
                         <!-- list existing tasks -->
                         <tr ng-repeat="task in mac.savedTasks | orderBy: mac.order:mac.reverse">
                             <td>
-                                    {{task.info}}                                    
+                                {{task.info}}                                    
                             </td> 
                             <td>
-                                    {{task.date | date:'fullDate'}}
+                                {{task.date | date:'fullDate'}}
+                            </td>
+                            <td>
+                                {{task.dateAdded | date: 'fullDate'}}
                             </td>
                         </tr>
                         
@@ -77,6 +80,9 @@
                                 </td>
                                 <td>
                                     <input type="date" class="form-control" id='new-task' ng-model='mac.newTask.date'>
+                                </td>
+                                <td>
+                                    <input type="date" class='form-control' id='new-task' ng-model = 'mac.newTask.dateAdded'>
                                 </td>
                             </tr>    
                             <tr>
@@ -93,8 +99,16 @@
             </div>
         </div>
 
+        <!-- success message -->
+        <div class='input-saved-alert container' ng-show='mac.showTaskSaved'>
+            <div class='alert alert-success'>
+                Task Saved!
+            </div>
+        </div>
+    
         <!--test-->
         <pre>
+            {{ mac.rightNow | date: 'fullDate' }}
             {{ mac.savedTasks | json}}
         </pre>
 

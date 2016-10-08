@@ -9,6 +9,7 @@ function MainController (orderByFilter, $timeout) {
     ctrl.reverse = false;
     ctrl.savedTasks = savedTasks;
     ctrl.showTaskSaved = false; // visibility for save verification message
+    ctrl.rightNow = Date.now();
 
     ctrl.sortBy = function(order) {
         ctrl.reverse = (ctrl.order === order) ? !ctrl.reverse : false;
@@ -18,6 +19,14 @@ function MainController (orderByFilter, $timeout) {
 
     // save user input for new todo task
      ctrl.addSavedTask = function() {
+        // make current date the default 
+        if (!ctrl.newTask.dateAdded) {
+            ctrl.newTask.dateAdded = ctrl.rightNow;
+        }
+        if (!ctrl.newTask.date) {
+            ctrl.newTask.date = ctrl.rightNow;
+        }
+        // save the user input
         ctrl.savedTasks.push(ctrl.newTask);
         ctrl.newTask = {};
 
@@ -25,7 +34,7 @@ function MainController (orderByFilter, $timeout) {
 
         $timeout(function() {
             ctrl.showTaskSaved = false; // visibility for save verification message
-        }, 2000);
+        }, 1500);
     };
 
 
