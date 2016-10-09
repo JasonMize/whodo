@@ -6,7 +6,7 @@ function MainController (orderByFilter, $timeout) {
     var savedTasks = [ ];
  
     ctrl.order = 'date';
-    ctrl.reverse = false;
+    ctrl.reverse = true;
     ctrl.savedTasks = savedTasks;
     ctrl.showTaskSaved = false; // visibility for save verification message
     ctrl.rightNow = Date.now();
@@ -43,4 +43,19 @@ function MainController (orderByFilter, $timeout) {
 
 angular.module('app', [])
     .controller('MainCtrl', MainController);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

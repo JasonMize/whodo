@@ -42,19 +42,19 @@
                             <button class='btn btn-primary' ng-click='mac.sortBy("info")'>
                                 Task
                             </button>
-                            <span class="sortorder" ng-show='mac.order === "info" '></span>
+                            <span class="sortorder" ng-show='mac.order === "info" ' ng-class="{reverse: mac.reverse}"></span>
                         </th>
                         <th>
                             <button class= 'btn btn-primary' ng-click='mac.sortBy("date")'>
                                 Date Due
                             </button>    
-                            <span class="sortorder" ng-show='mac.order === "date" '></span>
+                            <span class="sortorder" ng-show='mac.order === "date" ' ng-class="{reverse:mac.reverse}"></span>
                         </th>
                         <th>
                             <button class= 'btn btn-primary' ng-click='mac.sortBy("date-added")'>
                                 Date Added
                             </button>    
-                            <span class="sortorder" ng-show='mac.order === "date-added" '></span>
+                            <span class="sortorder" ng-show='mac.order === "date-added" ' ng-class="{reverse:mac.reverse}"></span>
                         </th>
                     </thead>
                     <tbody>
@@ -105,10 +105,10 @@
                 Task Saved!
             </div>
         </div>
-    
+
         <!--test-->
         <pre>
-            {{ mac.rightNow | date: 'fullDate' }}
+            reverse {{mac.reverse}}
             {{ mac.savedTasks | json}}
         </pre>
 
