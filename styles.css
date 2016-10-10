@@ -1,14 +1,35 @@
 body {
     padding: 70px 0;
-    /*background-color: red;*/
+    font-family: Vollkorn;
+    background-color: #b3cef9;
+    background: linear-gradient(180deg, #f9fbff, #f9fbff 85%, #b3cef9); 
+    height: 100vh;
+}
+
+.menu {
+    background: linear-gradient(180deg, #f9fbff, #b3cef9 95%, #000); 
+}
+
+.logo {
+    float: left;
+    height: 100px;
+    margin-top: -40px;
+    padding-right: 20px;
+}
+.menu-title {
+    font-weight: bold;
+    font-size: 2em;
+    vertical-align: -webkit-baseline-middle;
 }
 
 .page-footer {
-    position: fixed;
-    bottom: 0;
     text-align: center;
+    font-size: 1.2em;
+    background: linear-gradient(360deg, #f9fbff, #b3cef9 95%, #000); 
 }
-
+.footer-text {
+    padding-top: 10px;
+}
 
 .sortorder:after {
   content: '\25b2';   /* BLACK UP-POINTING TRIANGLE */
@@ -16,3 +37,28 @@ body {
 .sortorder.reverse:after {
   content: '\25bc';   /* BLACK DOWN-POINTING TRIANGLE */
 }
+
+.input-saved-alert {
+    margin-top: -60px;
+}
+
+.task-list {
+    background-color: #fff;
+    border: 2px solid #000;
+    margin: 0;
+    padding: 0;
+    margin: 50px 0 20px 0;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+
+
+
+
+
+
+
+

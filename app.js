@@ -7,6 +7,7 @@ function MainController (orderByFilter, $timeout) {
  
     ctrl.order = 'date';
     ctrl.reverse = true;
+
     ctrl.savedTasks = savedTasks;
     ctrl.showTaskSaved = false; // visibility for save verification message
     ctrl.rightNow = Date.now();
@@ -17,14 +18,36 @@ function MainController (orderByFilter, $timeout) {
         ctrl.savedTasks = orderByFilter(ctrl.savedTasks, ctrl.order, ctrl.reverse);
     };
 
+
+    ctrl.completeTask = function (index) {
+        ctrl.savedTasks[index].complete = true;
+        // ctrl.notDone = ctrl.notDone ? false : true;
+        // ctrl.done = ctrl.done ? false : true;
+    };
+
+
+    ctrl.uncompleteTask = function (index) {
+        ctrl.savedTasks[index].complete = false;
+    }
+
+    ctrl.deleteTask = function (index) {
+        ctrl.savedTasks.splice(index, 1);
+    };
+
+
+    ctrl.editTask = function (index, key) {
+        ctrl.savedTasks[index] = "";
+    };
+
+
     // save user input for new todo task
      ctrl.addSavedTask = function() {
         // make current date the default 
         if (!ctrl.newTask.dateAdded) {
             ctrl.newTask.dateAdded = ctrl.rightNow;
         }
-        if (!ctrl.newTask.date) {
-            ctrl.newTask.date = ctrl.rightNow;
+        if (!ctrl.newTask.dateDue) {
+            ctrl.newTask.dateDue = ctrl.rightNow;
         }
         // save the user input
         ctrl.savedTasks.push(ctrl.newTask);
