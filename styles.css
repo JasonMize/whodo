@@ -60,7 +60,9 @@ body {
 .complete-image{
     text-align: center;
 }
-
+.complete {
+    text-decoration: line-through;
+}
 
 
 

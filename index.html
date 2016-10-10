@@ -76,7 +76,7 @@
 
 
                             <!-- list existing tasks -->
-                            <tr ng-repeat="task in mac.savedTasks">
+                            <tr ng-repeat="task in mac.savedTasks" ng-class="{complete : task.complete}">
                                 <td class="complete-image">
                                     <a href="#" ng-click="mac.toggleCompleteTask(task)">
                                         <img src="uncomplete.png" alt="uncomplete" ng-show='task.complete == false'>
@@ -138,9 +138,9 @@
 
 
     <!--test-->
-    <div class="well">
+    <!-- <div class="well">
         {{ mac.savedTasks | json }}
-    </div>
+    </div> -->
 
         
     <!-- footer -->

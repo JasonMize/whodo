@@ -7,7 +7,7 @@ function MainController (orderByFilter, $timeout) {
  
     ctrl.order = 'dateAdded';
     ctrl.reverse = false;
-
+    ctrl.completeStyle = 'not-complete';
     ctrl.savedTasks = savedTasks;
     ctrl.showTaskSaved = false; // visibility for save verification message
     ctrl.rightNow = Date.now();
@@ -50,13 +50,12 @@ function MainController (orderByFilter, $timeout) {
         ctrl.savedTasks.push(ctrl.newTask);
         ctrl.newTask = {};
 
-        ctrl.showTaskSaved = true; // visibility for save verification message
-
+        // visibility for save verification message
+        ctrl.showTaskSaved = true; 
         $timeout(function() {
-            ctrl.showTaskSaved = false; // visibility for save verification message
+            ctrl.showTaskSaved = false; 
         }, 1500);
     };
-
 
 
 }
