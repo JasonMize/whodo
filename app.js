@@ -20,12 +20,9 @@ function MainController (orderByFilter, $timeout) {
     };
 
 
-    ctrl.completeTask = function (index) {
-        ctrl.savedTasks[index].complete = true;
+    ctrl.toggleCompleteTask = function (task) {
+        task.complete = !task.complete;
     };
-    ctrl.uncompleteTask = function (index) {
-        ctrl.savedTasks[index].complete = false;
-    }
 
 
     ctrl.deleteTask = function (index) {
@@ -33,12 +30,15 @@ function MainController (orderByFilter, $timeout) {
     };
 
 
-    ctrl.editTask = function (index, key) {
-        ctrl.savedTasks[index] = "";
-    };
+    // ctrl.editTask = function (index, key) {
+    //     ctrl.savedTasks[index] = "";
+    // };
 
 
      ctrl.addSavedTask = function() {
+        // set new tasks to uncomplete
+        ctrl.newTask.complete = false;
+
         // make current date the default 
         if (!ctrl.newTask.dateAdded) {
             ctrl.newTask.dateAdded = ctrl.rightNow;

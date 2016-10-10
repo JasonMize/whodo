@@ -73,17 +73,23 @@
 
                         <tbody>
 
+
+
                             <!-- list existing tasks -->
-                            <tr ng-repeat="task in mac.savedTasks | orderBy: mac.order:mac.reverse">
+                            <tr ng-repeat="task in mac.savedTasks">
                                 <td class="complete-image">
-                                    <input type='image' src="uncomplete.png" alt="uncomplete" ng-show='task.complete == false' ng-click="mac.completeTask($index)">
-                                    <input type='image' src="complete.png" alt="completed" ng-show='task.complete == true' ng-click="mac.uncompleteTask($index)">
+                                    <a href="#" ng-click="mac.toggleCompleteTask(task)">
+                                        <img src="uncomplete.png" alt="uncomplete" ng-show='task.complete == false'>
+                                        <img src="complete.png" alt="completed" ng-show='task.complete == true'>
+                                    </a>
                                 </td>
                                 <td>
-                                    <a href="#" ng-click="mac.editTask($index, 'info')">
-                                        {{task.info}}                           
+                                    {{task.info}}                           
+
+<!--                                     <a href="#" ng-click="mac.editTask($index, 'info')">
                                     </a>
-                                </td> 
+ -->
+                                 </td> 
                                 <td>
                                     {{task.dateDue | date:'fullDate'}}
                                 </td>
@@ -96,12 +102,14 @@
                                     </a>
                                 </td>
                             </tr>
-                            
+
+
+
+
                             <!-- add new task -->
                             <form ng-submit='mac.addSavedTask()'>
                                 <tr>
                                     <td>
-                                        <input type="hidden" class='form-control' id='new-task' ng-model='mac.newTask.complete=false'>
                                     </td>
                                      <td>
                                         <input type="text" class="form-control" id='new-task' placeholder="Describe task here." ng-model='mac.newTask.info'>                                 
