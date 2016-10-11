@@ -37,7 +37,7 @@
     </header>
 
 
-    
+    <!-- headers for table - controls sort order -->
     <div class='container'>
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -75,7 +75,7 @@
 
 
 
-                            <!-- list existing tasks -->
+                            <!-- list and edit existing tasks -->
                             <tr ng-repeat="task in mac.savedTasks" ng-class="{complete : task.complete}">
                                 <td class="complete-image">
                                     <a href="#" ng-click="mac.toggleCompleteTask(task)">
@@ -83,13 +83,16 @@
                                         <img src="complete.png" alt="completed" ng-show='task.complete == true'>
                                     </a>
                                 </td>
-                                <td>
-                                    {{task.info}}                           
-
-<!--                                     <a href="#" ng-click="mac.editTask($index, 'info')">
-                                    </a>
- -->
-                                 </td> 
+    
+                                <form>  
+                                    <td>
+                                        <div>
+                                            {{task.info}}
+                                        </div>             
+                                        <input type="text" id='update-task' class='form-control' placeholder="{{task.info}}" ng-model='task.info'>              
+                                     </td> 
+                                </form>
+   
                                 <td>
                                     {{task.dateDue | date:'fullDate'}}
                                 </td>
@@ -138,9 +141,9 @@
 
 
     <!--test-->
-    <!-- <div class="well">
+    <pre>
         {{ mac.savedTasks | json }}
-    </div> -->
+    </pre>
 
         
     <!-- footer -->
