@@ -10,8 +10,8 @@ function MainController (orderByFilter, $timeout) {
     ctrl.reverse = false;  // init with field order not reversed
     ctrl.completeStyle = 'not-complete';  // init with task given 'not-complete' style
     ctrl.showTaskSaved = false; // visibility for save verification message
-    ctrl.rightNow = Date.now(); // grab the current date
-
+    ctrl.rightNow = new Date(Date.now()); // grab the current date
+    ctrl.editing = false; // init state for editing or not
 
     // order savedTasks by selected key
     ctrl.sortBy = function(order) {
@@ -34,28 +34,24 @@ function MainController (orderByFilter, $timeout) {
 
 
     // edit existing task
-    ctrl.editTask = function () {
-        // console.log (task);
-        // console.log (task.info)
-        // console.log(ctrl.savedTasks[index].info)
-        // console.log(ctrl.update.info)
-        // ctrl.savedTasks[index].info = ctrl.task.info;
+    ctrl.editTask = function (task) {
+        ctrl.editing = !ctrl.editing;
     };
 
 
+
     // save new tasks to savedTasks
-    ctrl.addSavedTask = function() {
-        
+    ctrl.addSavedTask = function() {        
         // set new tasks to uncomplete
         ctrl.newTask.complete = false;
 
         // make current date the default 
         if (!ctrl.newTask.dateAdded) {
             ctrl.newTask.dateAdded = ctrl.rightNow;
-        }
+        } 
         if (!ctrl.newTask.dateDue) {
             ctrl.newTask.dateDue = ctrl.rightNow;
-        }
+        } 
 
         // save the user input
         ctrl.savedTasks.push(ctrl.newTask);

@@ -83,22 +83,28 @@
                                         <img src="complete.png" alt="completed" ng-show='task.complete == true'>
                                     </a>
                                 </td>
-    
-                                <form>  
-                                    <td>
-                                        <div>
-                                            {{task.info}}
-                                        </div>             
-                                        <input type="text" id='update-task' class='form-control' placeholder="{{task.info}}" ng-model='task.info'>              
-                                     </td> 
-                                </form>
-   
+                                    
                                 <td>
-                                    {{task.dateDue | date:'fullDate'}}
-                                </td>
+                                    <a href="#" ng-click='mac.editTask()' ng-show='mac.editing == false'>
+                                        {{task.info}}
+                                    </a>
+                                    <input type="text" class='form-control' placeholder="{{task.info}}" ng-model='task.info' ng-show='mac.editing == true'>              
+                                 </td> 
+       
                                 <td>
-                                    {{task.dateAdded | date: 'fullDate'}}
+                                    <a href="#" ng-click='mac.editTask()' ng-show='mac.editing == false'>
+                                        {{task.dateDue | date:'fullDate'}}
+                                    </a>
+                                    <input type="date" class='form-control' placeholder="{{task.dateDue}}" ng-model='task.dateDue' ng-show='mac.editing == true'>    
                                 </td>
+
+                                <td>
+                                    <a href="#" ng-click='mac.editTask()' ng-show='mac.editing == false'>
+                                        {{task.dateAdded | date: 'fullDate'}}
+                                    </a>
+                                    <input type="date" class='form-control' placeholder="{{task.dateAdded}}" ng-model='task.dateAdded' ng-show='mac.editing == true'>              
+                                </td>
+
                                 <td>
                                     <a href="#" ng-click="mac.deleteTask($index)">
                                         X
@@ -111,7 +117,7 @@
 
                             <!-- add new task -->
                             <form ng-submit='mac.addSavedTask()'>
-                                <tr>
+                                <tr ng-show='mac.editing==false'>
                                     <td>
                                     </td>
                                      <td>
@@ -126,11 +132,14 @@
                                 </tr>    
                         </tbody>
                     </table>                
-
-                                <button class='btn btn-primary btn-block'>
+                                <button class='btn btn-primary btn-block' ng-show='mac.editing==false'>
                                     Add Task 
                                 </button>                                
                             </form>
+                    
+                    <button class='btn btn-warning btn-block' ng-show='mac.editing==true' ng-click='mac.editTask()'>
+                        Done Editing
+                    </button>
 
                 </div><!-- end task-list -->
             </div>
